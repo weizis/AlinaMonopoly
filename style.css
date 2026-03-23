@@ -537,7 +537,35 @@ form {
     padding-left: 20px;
     position: relative;
 }
+/* Подчеркнутые текстовые ссылки - цвет E75480 */
+a:not(.nav-btn):not(.bottom-nav-item):not(.dropdown-item):not(.progress-icon-link) {
+    text-decoration: underline !important;
+    color: #E75480 !important;
+}
 
+/* Для ссылки на Telegram в index.html */
+.bottom-text a {
+    text-decoration: underline !important;
+    color: #E75480 !important;
+}
+
+/* Для ссылки на тюрьму в info.html */
+.instruction-section a {
+    text-decoration: underline !important;
+    color: #E75480 !important;
+}
+
+/* Для ссылок в компонентах игры */
+.components-list li a {
+    text-decoration: underline !important;
+    color: #E75480 !important;
+}
+
+/* Для подсписков */
+.sublist li a {
+    text-decoration: underline !important;
+    color: #E75480 !important;
+}
 .instruction-list li::before {
     content: "•";
     position: absolute;
