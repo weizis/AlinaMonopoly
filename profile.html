@@ -70,9 +70,9 @@
 
         <div class="drama-progress">
             <div class="progress-header">
-                <span class="progress-title">Процесс драмы</span>
+                <span class="progress-title">Прогресс драмы</span>
                 <a href="#" class="progress-icon-link" id="dramaIconLink">
-                    <img src="assets/change.png" alt="Драма" class="progress-icon">
+                    <img src="assets/change.png" alt="Драма" class="progress-icon"  >
                 </a>
             </div>
             <div class="progress-bar-container">
@@ -92,7 +92,7 @@
             </a>
             <a href="coin.html" class="nav-btn">
                 <img src="assets/coin.png" alt="Драма коины" class="nav-icon">
-                <span>ДРАМА КОИНЫ</span>
+                <span>ДРАМАКОИНЫ</span>
             </a>
             <a href="cards.html" class="nav-btn">
                 <img src="assets/cards.png" alt="Карточки" class="nav-icon">
@@ -143,12 +143,12 @@
         
         // Определяем уровень и бонус на основе драмакоинов
         function getLevelAndBonus(score) {
-            if (score <= 0) return { level: "БАН", bonus: "Сразу в тюрьму" };
-            if (score <= 20) return { level: "ТУЛЬТ", bonus: "Низкая ставка" };
+            if (score <= 0) return { level: "БАН", bonus: "сразу в тюрьму" };
+            if (score <= 20) return { level: "ТУЛЬТ", bonus: "низкая ставка" };
             if (score <= 50) return { level: "НОРМ", bonus: "нет бонуса" };
             if (score <= 70) return { level: "ХОРОШО", bonus: "переброс кубика" };
             if (score <= 80) return { level: "КАЙФ", bonus: "не платить аренду" };
-            return { level: "ПРАЙМ", bonus: "дешевле ход" };
+            return { level: "ПРАЙМ", bonus: "2 хода подряд" };
         }
         
         const levelBonus = getLevelAndBonus(userScore);

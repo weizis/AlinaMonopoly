@@ -519,7 +519,10 @@ form {
     color: #1A1A1A;
     margin-bottom: 12px;
 }
-
+.progress-icon {
+    width: 20px !important;
+    height: 20px !important;
+}
 /* Списки - черный текст */
 .instruction-list {
     list-style: none;
