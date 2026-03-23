@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <title>Alina Monopoly</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="users.js"></script>
+</head>
+<body class="login-page">
+    <div class="container">
+        <div class="content">
+            <div class="photo-wrapper">
+                <img src="assets/logo.png" alt="Alina Monopoly" class="profile-photo">
+            </div>
+            
+
+            <h1 class="welcome-title">Добро пожаловать!</h1>
+            
+
+            <form id="loginForm">
+                <input type="password" id="password" class="input-field" placeholder="Введите пароль">
+                <button type="submit" class="login-btn">ВОЙТИ</button>
+            </form>
+
+            <div class="bottom-text"><br>Забыл пароль? Пиши <a href="https://t.me/weizis" target="_blank" style="color:#E75480; text-decoration:none;">@weizis</a></div>
+        </div>
+    </div>
+    
+    <script>
+        const loginForm = document.getElementById('loginForm');
+        const passwordInput = document.getElementById('password');
+        
+        function showNotification(message, isError = true) {
+            const existing = document.querySelector('.notification');
+            if (existing) existing.remove();
+            
+            const notification = document.createElement('div');
+            notification.className = 'notification';
+            notification.textContent = message;
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                left: 50%;
+                transform: translateX(-50%);
+                background: ${isError ? '#E75480' : '#4CAF50'};
+                color: #FFE4F4;
+                padding: 12px 20px;
+                border-radius: 30px;
+                font-size: 14px;
+                font-weight: 500;
+                z-index: 1000;
+                text-align: center;
+                animation: fadeInOut 2.5s ease;
+                max-width: 90vw;
+                white-space: normal;
+            `;
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                if (notification.parentNode) notification.remove();
+            }, 2500);
+        }
+        
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const password = passwordInput.value.trim();
+            
+            if (!password) {
+                showNotification('Пожалуйста, введите пароль');
+                passwordInput.style.animation = 'shake 0.3s ease';
+                setTimeout(() => {
+                    passwordInput.style.animation = '';
+                }, 300);
+                return;
+            }
+            
+            // Ищем пользователя по паролю
+            const user = users.find(u => u.password === password);
+            
+            if (user) {
+                // Сохраняем пользователя в localStorage
+                localStorage.setItem('currentUser', JSON.stringify(user));
+                showNotification(`Добро пожаловать, ${user.name}!`, false);
+                
+                // Переход на профиль
+                setTimeout(() => {
+                    window.location.href = 'profile.html';
+                }, 500);
+            } else {
+                showNotification('Неверный пароль');
+                passwordInput.value = '';
+                passwordInput.style.animation = 'shake 0.3s ease';
+                setTimeout(() => {
+                    passwordInput.style.animation = '';
+                }, 300);
+            }
+        });
+        
+        // Анимация тряски
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes shake {
+                0%, 100% { transform: translateX(0); }
+                25% { transform: translateX(-5px); }
+                75% { transform: translateX(5px); }
+            }
+            @keyframes fadeInOut {
+                0% { opacity: 0; transform: translateX(-50%) translateY(-20px); }
+                15% { opacity: 1; transform: translateX(-50%) translateY(0); }
+                85% { opacity: 1; transform: translateX(-50%) translateY(0); }
+                100% { opacity: 0; transform: translateX(-50%) translateY(-20px); }
+            }
+        `;
+        document.head.appendChild(style);
+        
+        // Поддержка Enter
+        passwordInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                loginForm.dispatchEvent(new Event('submit'));
+            }
+        });
+    </script>
+</body>
+</html>

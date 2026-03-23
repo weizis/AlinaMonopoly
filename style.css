@@ -1,0 +1,1213 @@
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* ===== ПРАВИЛЬНОЕ ПОДКЛЮЧЕНИЕ ШРИФТА ===== */
+/* Thin */
+@font-face {
+    font-family: 'Cruinn';
+    src: url('fonts/Cruinn Thin.ttf') format('truetype');
+    font-weight: 100;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Light */
+@font-face {
+    font-family: 'Cruinn';
+    src: url('fonts/Cruinn Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Regular */
+@font-face {
+    font-family: 'Cruinn';
+    src: url('fonts/Cruinn Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Medium */
+@font-face {
+    font-family: 'Cruinn';
+    src: url('fonts/Cruinn Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Bold */
+@font-face {
+    font-family: 'Cruinn';
+    src: url('fonts/Cruinn Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Black */
+@font-face {
+    font-family: 'Cruinn';
+    src: url('fonts/Cruinn Black.ttf') format('truetype');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Базовые стили для body - по умолчанию для всех страниц кроме главной и входа */
+body {
+    min-height: 100vh;
+    background: #FFE8F2;
+    font-family: 'Cruinn', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+/* Специальный фон для главной страницы */
+body.home-page {
+    background: #FFCBE2;
+}
+
+/* Специальный фон для страницы входа */
+body.login-page {
+    background: #FFCBE2;
+}
+
+/* ===== СТИЛИ ДЛЯ СТРАНИЦЫ ВХОДА ===== */
+.container {
+    width: 100%;
+    max-width: 375px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    width: 100%;
+    padding: 20px 16px;
+}
+
+/* Фото 240x240 */
+.photo-wrapper {
+    width: 240px;
+    height: 240px;
+    margin: 0 auto;
+}
+
+.profile-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Текст приветствия */
+.welcome-title {
+    font-size: 28px;
+    font-weight: 700;
+    font-family: 'Cruinn', sans-serif;
+    color: #E75480;
+    text-align: center;
+    letter-spacing: -0.3px;
+}
+
+/* Форма */
+form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* Поле ввода */
+.input-field {
+    width: 100%;
+    background: #FFE4F4;
+    border: none;
+    border-radius: 30px;
+    padding: 14px 20px;
+    font-size: 16px;
+    font-weight: 400;
+    color: #E75480;
+    outline: none;
+    font-family: 'Cruinn', sans-serif;
+    transition: all 0.2s ease;
+}
+
+.input-field::placeholder {
+    color: #E75480;
+    opacity: 0.7;
+    font-weight: 400;
+    font-family: 'Cruinn', sans-serif;
+}
+
+.input-field:focus {
+    outline: 2px solid #E75480;
+    outline-offset: 2px;
+}
+
+/* Кнопка */
+.login-btn {
+    width: 100%;
+    background: #E75480;
+    border: none;
+    border-radius: 30px;
+    padding: 14px 20px;
+    font-size: 16px;
+    font-weight: 700;
+    color: #FFE4F4;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: 'Cruinn', sans-serif;
+}
+
+.login-btn:active {
+    transform: scale(0.97);
+    background: #d43f6c;
+}
+
+/* Текст внизу */
+.bottom-text {
+    text-align: center;
+    color: #E75480;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1.5;
+    margin-top: 8px;
+    font-family: 'Cruinn', sans-serif;
+}
+
+/* ===== СТИЛИ ДЛЯ ГЛАВНОЙ СТРАНИЦЫ ===== */
+
+/* Фиксированная верхняя панель - для всех страниц */
+.top-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: #FFBDD9;
+    padding: 16px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.logo-placeholder {
+    width: 30px;
+    height: 30px;
+    visibility: hidden;
+}
+
+.logo-text {
+    font-size: 18px;
+    font-weight: 700;
+    color: #E75480;
+    letter-spacing: 0.5px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.edit-button {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease;
+}
+
+.edit-button:active {
+    transform: scale(0.92);
+}
+
+/* Основной контент */
+.main-content {
+    flex: 1;
+    margin-top: 80px;
+    margin-bottom: 70px;
+    padding: 20px 16px;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Профиль с фото */
+.profile-section {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 32px;
+    background: #FFCDE3;
+    padding: 16px;
+    border-radius: 20px;
+}
+
+.avatar-wrapper {
+    flex-shrink: 0;
+}
+
+.avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 20px;
+    object-fit: cover;
+    border: 3px solid #E75480;
+}
+
+.greeting {
+    flex: 1;
+}
+
+.greeting-text {
+    font-size: 20px;
+    font-weight: 700;
+    color: #E75480;
+    margin-bottom: 12px;
+}
+
+.stats {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.stat-item {
+    display: flex;
+    gap: 8px;
+    font-size: 14px;
+}
+
+.stat-label {
+    color: #E75480;
+    font-weight: 500;
+    opacity: 0.8;
+}
+
+.stat-value {
+    color: #E75480;
+    font-weight: 700;
+}
+
+/* Шкала прогресса */
+.drama-progress {
+    background: #FFCDE3;
+    padding: 20px 16px;
+    border-radius: 20px;
+    margin-bottom: 32px;
+}
+
+.progress-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.progress-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: #E75480;
+}
+
+.progress-icon-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: transform 0.2s ease;
+}
+
+.progress-icon-link:active {
+    transform: scale(0.92);
+}
+
+.progress-bar-container {
+    width: 100%;
+    height: 12px;
+    background: #FFE4F4;
+    border-radius: 30px;
+    overflow: hidden;
+    margin-bottom: 12px;
+}
+
+.progress-bar-fill {
+    height: 100%;
+    background: #E75480;
+    border-radius: 30px;
+    width: 0%;
+    transition: width 0.3s ease;
+}
+
+.progress-numbers {
+    text-align: right;
+    font-size: 14px;
+    font-weight: 500;
+    color: #E75480;
+}
+
+.progress-numbers span {
+    font-weight: 700;
+}
+
+/* Три кнопки навигации */
+.nav-buttons {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.nav-btn {
+    flex: 1;
+    background: #FFCDE3;
+    border-radius: 30px;
+    padding: 14px 8px;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s ease;
+}
+
+.nav-btn:active {
+    transform: scale(0.96);
+    background: #E75480;
+}
+
+.nav-btn:active .nav-icon {
+    filter: brightness(0) invert(1);
+}
+
+.nav-btn:active span {
+    color: #FFE4F4;
+}
+
+.nav-btn span {
+    font-size: 11px;
+    font-weight: 600;
+    color: #E75480;
+    text-align: center;
+    letter-spacing: 0.5px;
+}
+
+/* Нижняя панель - для всех страниц */
+.bottom-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #FFBDD9;
+    padding: 10px 20px 20px;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+    z-index: 100;
+}
+
+.bottom-nav {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.bottom-nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    text-decoration: none;
+    transition: transform 0.2s ease;
+    padding: 6px 12px;
+    border-radius: 30px;
+}
+
+.bottom-nav-item:active {
+    transform: scale(0.92);
+    background: rgba(231, 84, 128, 0.1);
+}
+
+.bottom-nav-item span {
+    font-size: 10px;
+    font-weight: 500;
+    color: #E75480;
+}
+
+/* Активная кнопка в нижней панели */
+.bottom-nav-item.active {
+    background: rgba(231, 84, 128, 0.2);
+    border-radius: 30px;
+}
+
+.bottom-nav-item.active span {
+    font-weight: 700;
+}
+
+/* ===== ВСЕ ИКОНКИ 30x30 ===== */
+.edit-icon,
+.progress-icon,
+.nav-icon,
+.bottom-icon {
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+}
+
+/* ===== СТРАНИЦА ИНСТРУКЦИИ ===== */
+.instruction-page {
+    background: #FFE8F2;
+}
+
+.instruction-content {
+    padding-bottom: 30px;
+}
+
+.instruction-container {
+    max-width: 100%;
+}
+
+.instruction-main-title {
+    font-size: 32px;
+    font-weight: 700;
+    color: #E75480;
+    text-align: center;
+    margin-bottom: 24px;
+    font-family: 'Cruinn', sans-serif;
+}
+
+.instruction-section {
+    background: #FFCDE3;
+    border-radius: 24px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.section-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: #E75480;
+    margin-bottom: 16px;
+    border-left: 4px solid #E75480;
+    padding-left: 12px;
+}
+
+.subsection-title {
+    font-size: 17px;
+    font-weight: 700;
+    color: #E75480;
+    margin: 16px 0 12px 0;
+}
+
+.section-text {
+    font-size: 14px;
+    line-height: 1.5;
+    color: #1A1A1A;
+    margin-bottom: 12px;
+}
+
+/* Списки - черный текст */
+.instruction-list {
+    list-style: none;
+    padding-left: 0;
+}
+
+.instruction-list li {
+    font-size: 14px;
+    line-height: 1.5;
+    color: #1A1A1A;
+    margin-bottom: 8px;
+    padding-left: 20px;
+    position: relative;
+}
+
+.instruction-list li::before {
+    content: "•";
+    position: absolute;
+    left: 4px;
+    color: #E75480;
+    font-weight: bold;
+}
+
+/* Компоненты игры - ссылки */
+.components-list li a {
+    color: #1A1A1A;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.components-list li a:hover {
+    color: #E75480;
+    text-decoration: underline;
+}
+
+/* Нумерованный список */
+.instruction-list.numbered {
+    list-style: none;
+    counter-reset: item;
+}
+
+.instruction-list.numbered li {
+    counter-increment: item;
+    padding-left: 28px;
+}
+
+.instruction-list.numbered li::before {
+    content: counter(item) ".";
+    position: absolute;
+    left: 4px;
+    color: #E75480;
+    font-weight: bold;
+}
+
+/* Подсписки */
+.sublist {
+    list-style: none;
+    margin-top: 6px;
+    margin-left: 20px;
+}
+
+.sublist li {
+    font-size: 13px;
+    margin-bottom: 4px;
+    color: #1A1A1A;
+}
+
+.sublist li::before {
+    content: "◦";
+    color: #E75480;
+}
+
+.sublist li a {
+    color: #1A1A1A;
+    text-decoration: none;
+}
+
+.sublist li a:hover {
+    color: #E75480;
+    text-decoration: underline;
+}
+
+/* Карточки банкротства */
+.bankruptcy-options {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.bankruptcy-card {
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 20px;
+    padding: 16px;
+}
+
+.bankruptcy-card .subsection-title {
+    margin-top: 0;
+    margin-bottom: 12px;
+}
+
+/* Таблицы */
+.table-wrapper {
+    overflow-x: auto;
+    margin: 12px 0;
+}
+
+.price-table, .drama-table, .levels-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #FFE4F4;
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+.price-table th, .drama-table th, .levels-table th {
+    background: #E75480;
+    color: #FFE4F4;
+    padding: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.price-table td, .drama-table td, .levels-table td {
+    padding: 10px;
+    font-size: 14px;
+    color: #1A1A1A;
+    text-align: center;
+    border-bottom: 1px solid rgba(231, 84, 128, 0.2);
+}
+
+.price-table tr:last-child td, .drama-table tr:last-child td, .levels-table tr:last-child td {
+    border-bottom: none;
+}
+
+/* ===== СТРАНИЦА ДРАМАКОИНЫ ===== */
+.dramacoins-page {
+    background: #FFE8F2;
+}
+
+.dramacoins-content {
+    padding-bottom: 30px;
+}
+
+.dramacoins-container {
+    max-width: 100%;
+}
+
+.dramacoins-title {
+    font-size: 32px;
+    font-weight: 700;
+    color: #E75480;
+    text-align: center;
+    margin-bottom: 24px;
+    font-family: 'Cruinn', sans-serif;
+}
+
+/* Блок с текущим счетом */
+.score-card {
+    background: #FFCDE3;
+    border-radius: 24px;
+    padding: 32px 20px;
+    text-align: center;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.score-value {
+    font-size: 56px;
+    font-weight: 700;
+    color: #E75480;
+    font-family: 'Cruinn', sans-serif;
+    margin-bottom: 8px;
+}
+
+.score-label {
+    font-size: 14px;
+    font-weight: 500;
+    color: #666666;
+    font-family: 'Cruinn', sans-serif;
+}
+
+/* Редактирование счета */
+.edit-score-section {
+    background: #FFCDE3;
+    border-radius: 24px;
+    padding: 20px;
+    margin-bottom: 24px;
+}
+
+.amount-input {
+    width: 100%;
+    background: #FFE4F4;
+    border: 1px solid #E75480;
+    border-radius: 30px;
+    padding: 14px 20px;
+    font-size: 16px;
+    font-weight: 400;
+    color: #E75480;
+    outline: none;
+    font-family: 'Cruinn', sans-serif;
+    text-align: center;
+    margin-bottom: 16px;
+}
+
+.amount-input::placeholder {
+    color: #E75480;
+    opacity: 0.6;
+}
+
+.amount-input:focus {
+    outline: 2px solid #E75480;
+    outline-offset: 2px;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 16px;
+}
+
+.action-btn {
+    flex: 1;
+    border: none;
+    border-radius: 30px;
+    padding: 14px 20px;
+    font-size: 24px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: 'Cruinn', sans-serif;
+}
+
+.action-btn:active {
+    transform: scale(0.97);
+}
+
+.plus-btn {
+    background: #E75480;
+    color: #FFFFFF;
+}
+
+.plus-btn:active {
+    background: #d43f6c;
+}
+
+.minus-btn {
+    background: #FFE4F4;
+    color: #E75480;
+    border: 1px solid #E75480;
+}
+
+.minus-btn:active {
+    background: #ffd9e6;
+}
+
+/* Таблица пользователей */
+.users-table-container {
+    background: #FFCDE3;
+    border-radius: 24px;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.users-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.users-table thead {
+    background: #E75480;
+}
+
+.users-table th {
+    padding: 16px;
+    font-size: 14px;
+    font-weight: 700;
+    color: #FFFFFF;
+    text-align: left;
+    font-family: 'Cruinn', sans-serif;
+}
+
+.users-table td {
+    padding: 14px 16px;
+    font-size: 14px;
+    color: #333333;
+    border-bottom: 1px solid rgba(231, 84, 128, 0.2);
+    font-family: 'Cruinn', sans-serif;
+}
+
+.users-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.users-table .score-cell {
+    font-weight: 700;
+    color: #E75480;
+    text-align: right;
+}
+
+/* ===== АДАПТАЦИЯ ===== */
+@media (max-width: 375px) {
+    /* Страница входа */
+    .content {
+        gap: 20px;
+        padding: 16px 12px;
+    }
+    
+    .photo-wrapper {
+        width: 200px;
+        height: 200px;
+    }
+    
+    .welcome-title {
+        font-size: 24px;
+    }
+    
+    .input-field, .login-btn {
+        padding: 12px 18px;
+        font-size: 15px;
+    }
+    
+    .bottom-text {
+        font-size: 12px;
+    }
+    
+    /* Главная страница */
+    .top-bar {
+        padding: 12px 16px;
+    }
+    
+    .logo-text {
+        font-size: 16px;
+    }
+    
+    .main-content {
+        margin-top: 70px;
+        margin-bottom: 65px;
+        padding: 16px 12px;
+    }
+    
+    .avatar {
+        width: 70px;
+        height: 70px;
+    }
+    
+    .greeting-text {
+        font-size: 18px;
+    }
+    
+    .stat-item {
+        font-size: 12px;
+    }
+    
+    .progress-title {
+        font-size: 14px;
+    }
+    
+    .nav-btn span {
+        font-size: 10px;
+    }
+    
+    /* Иконки на маленьких экранах */
+    .edit-icon,
+    .progress-icon,
+    .nav-icon,
+    .bottom-icon {
+        width: 26px;
+        height: 26px;
+    }
+    
+    /* Инструкция */
+    .instruction-main-title {
+        font-size: 28px;
+    }
+    
+    .section-title {
+        font-size: 18px;
+    }
+    
+    .subsection-title {
+        font-size: 16px;
+    }
+    
+    .section-text, .instruction-list li {
+        font-size: 13px;
+    }
+    
+    .instruction-section {
+        padding: 16px;
+    }
+    
+    .price-table th, .price-table td,
+    .drama-table th, .drama-table td,
+    .levels-table th, .levels-table td {
+        padding: 8px;
+        font-size: 12px;
+    }
+    
+    /* Драмакоины */
+    .dramacoins-title {
+        font-size: 28px;
+    }
+    
+    .score-value {
+        font-size: 48px;
+    }
+    
+    .score-card {
+        padding: 24px 16px;
+    }
+    
+    .edit-score-section {
+        padding: 16px;
+    }
+    
+    .amount-input, .action-btn {
+        padding: 12px 16px;
+    }
+    
+    .action-btn {
+        font-size: 20px;
+    }
+    
+    .users-table th, .users-table td {
+        padding: 12px;
+        font-size: 13px;
+    }
+}
+
+@media (min-width: 376px) and (max-width: 390px) {
+    .photo-wrapper {
+        width: 220px;
+        height: 220px;
+    }
+}
+
+@media (min-width: 391px) and (max-width: 428px) {
+    .container {
+        max-width: 390px;
+    }
+    
+    .photo-wrapper {
+        width: 220px;
+        height: 220px;
+    }
+}
+
+@media (max-width: 320px) {
+    .content {
+        padding: 12px;
+    }
+    
+    .photo-wrapper {
+        width: 180px;
+        height: 180px;
+    }
+    
+    .welcome-title {
+        font-size: 22px;
+    }
+    
+    .input-field, .login-btn {
+        padding: 10px 16px;
+        font-size: 14px;
+    }
+    
+    .bottom-text {
+        font-size: 11px;
+    }
+}
+
+@media (min-width: 428px) {
+    .main-content {
+        max-width: 400px;
+        margin-left: auto;
+        margin-right: auto;
+        width: 100%;
+    }
+}
+
+/* Учет safe-area для iPhone */
+@supports (padding: max(0px)) {
+    .top-bar {
+        padding-top: max(16px, env(safe-area-inset-top));
+        padding-left: max(20px, env(safe-area-inset-left));
+        padding-right: max(20px, env(safe-area-inset-right));
+    }
+    
+    .bottom-bar {
+        padding-bottom: max(20px, env(safe-area-inset-bottom));
+        padding-left: max(20px, env(safe-area-inset-left));
+        padding-right: max(20px, env(safe-area-inset-right));
+    }
+    
+    body {
+        padding-left: max(0px, env(safe-area-inset-left));
+        padding-right: max(0px, env(safe-area-inset-right));
+    }
+}
+
+/* Улучшение скролла на iOS */
+body {
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Плавный скролл к якорям */
+html {
+    scroll-behavior: smooth;
+}
+/* ===== СТРАНИЦА КАРТОЧКИ ===== */
+.cards-page {
+    background: #FFE8F2;
+}
+
+.cards-content {
+    padding-bottom: 30px;
+}
+
+.cards-container {
+    max-width: 100%;
+}
+
+.cards-title {
+    font-size: 32px;
+    font-weight: 700;
+    color: #E75480;
+    text-align: center;
+    margin-bottom: 24px;
+    font-family: 'Cruinn', sans-serif;
+}
+
+/* Фильтры */
+.filters-section {
+    margin-bottom: 20px;
+}
+
+.filter-buttons {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.filter-btn {
+    flex: 1;
+    background: #FFCDE3;
+    border: none;
+    border-radius: 30px;
+    padding: 12px 20px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #E75480;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: 'Cruinn', sans-serif;
+}
+
+.filter-btn.active {
+    background: #E75480;
+    color: #FFFFFF;
+}
+
+.filter-btn:active {
+    transform: scale(0.96);
+}
+
+/* Поиск */
+.search-section {
+    margin-bottom: 20px;
+}
+
+.search-input {
+    width: 100%;
+    background: #FFCDE3;
+    border: none;
+    border-radius: 30px;
+    padding: 14px 20px;
+    font-size: 14px;
+    font-weight: 400;
+    color: #E75480;
+    outline: none;
+    font-family: 'Cruinn', sans-serif;
+}
+
+.search-input::placeholder {
+    color: #E75480;
+    opacity: 0.6;
+}
+
+.search-input:focus {
+    outline: 2px solid #E75480;
+    outline-offset: 2px;
+}
+
+/* Список карточек */
+.cards-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+/* Карточка */
+.card-item {
+    border-radius: 20px;
+    padding: 20px;
+    transition: transform 0.2s ease;
+}
+
+.card-item:active {
+    transform: scale(0.98);
+}
+
+/* Карточки Шанса */
+.card-item.chance-card {
+    background: #FFF4F9;
+}
+
+/* Карточки Казны */
+.card-item.treasury-card {
+    background: #FFDBDD;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.card-name {
+    font-size: 16px;
+    font-weight: 700;
+    color: #E75480;
+    font-family: 'Cruinn', sans-serif;
+}
+
+.card-drama {
+    font-size: 18px;
+    font-weight: 700;
+    font-family: 'Cruinn', sans-serif;
+}
+
+.card-text {
+    font-size: 14px;
+    line-height: 1.5;
+    color: #1A1A1A;
+    font-family: 'Cruinn', sans-serif;
+}
+
+.no-results {
+    text-align: center;
+    padding: 40px;
+    font-size: 14px;
+    color: #E75480;
+    font-family: 'Cruinn', sans-serif;
+    background: #FFCDE3;
+    border-radius: 20px;
+}
+
+/* Адаптация */
+@media (max-width: 375px) {
+    .cards-title {
+        font-size: 28px;
+    }
+    
+    .filter-btn {
+        padding: 10px 16px;
+        font-size: 13px;
+    }
+    
+    .search-input {
+        padding: 12px 16px;
+        font-size: 13px;
+    }
+    
+    .card-item {
+        padding: 16px;
+    }
+    
+    .card-name {
+        font-size: 14px;
+    }
+    
+    .card-drama {
+        font-size: 16px;
+    }
+    
+    .card-text {
+        font-size: 13px;
+    }
+}

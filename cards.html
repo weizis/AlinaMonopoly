@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <title>AlinaMonopoly | Карточки</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="cards-page">
+    <!-- Фиксированная верхняя панель -->
+    <header class="top-bar">
+        <div class="edit-button" id="backButton">
+            <img src="assets/back.png" alt="Назад" class="edit-icon">
+        </div>
+        <div class="logo-placeholder"></div>
+        <span class="logo-text">AlinaMonopoly</span>
+        <div class="edit-button" id="menuButton">
+            <img src="assets/menu.png" alt="Меню" class="edit-icon">
+        </div>
+    </header>
+
+    <!-- Выпадающее меню -->
+    <div id="menuOverlay" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); z-index:999;"></div>
+    <div id="menuPanel" style="position:fixed; top:0; left:-280px; width:280px; height:100%; background:#FFBDD9; z-index:1000; transition:left 0.3s; box-shadow:2px 0 10px rgba(0,0,0,0.1);">
+        <div style="display:flex; justify-content:space-between; align-items:center; padding:20px; border-bottom:1px solid rgba(231,84,128,0.3);">
+            <span style="font-size:20px; font-weight:700; color:#E75480;">Меню</span>
+            <button id="closeMenuBtn" style="background:none; border:none; font-size:28px; color:#E75480; cursor:pointer;">✕</button>
+        </div>
+        <a href="profile.html" style="display:flex; align-items:center; gap:15px; padding:15px 20px; text-decoration:none; border-bottom:1px solid rgba(231,84,128,0.2);">
+            <img src="assets/home.png" style="width:24px; height:24px;">
+            <span style="font-size:16px; color:#E75480;">Главная</span>
+        </a>
+        <a href="info.html" style="display:flex; align-items:center; gap:15px; padding:15px 20px; text-decoration:none; border-bottom:1px solid rgba(231,84,128,0.2);">
+            <img src="assets/info.png" style="width:24px; height:24px;">
+            <span style="font-size:16px; color:#E75480;">Инструкция</span>
+        </a>
+        <a href="coin.html" style="display:flex; align-items:center; gap:15px; padding:15px 20px; text-decoration:none; border-bottom:1px solid rgba(231,84,128,0.2);">
+            <img src="assets/coin.png" style="width:24px; height:24px;">
+            <span style="font-size:16px; color:#E75480;">Драмакоины</span>
+        </a>
+        <a href="cards.html" style="display:flex; align-items:center; gap:15px; padding:15px 20px; text-decoration:none; border-bottom:1px solid rgba(231,84,128,0.2); background:rgba(231,84,128,0.3);">
+            <img src="assets/cards.png" style="width:24px; height:24px;">
+            <span style="font-size:16px; color:#E75480;">Карточки</span>
+        </a>
+        <a href="main.html" id="logoutBtn" style="display:flex; align-items:center; gap:15px; padding:15px 20px; text-decoration:none; border-bottom:1px solid rgba(231,84,128,0.2);">
+                <img src="assets/logout.png" style="width:24px; height:24px;" onerror="this.src='assets/home.png'">
+                <span style="font-size:16px; color:#E75480;">Выйти</span>
+            </a>
+    </div>
+
+    <!-- Основной контент -->
+    <main class="main-content cards-content">
+        <div class="cards-container">
+            <!-- Заголовок -->
+            <h1 class="cards-title">Карточки</h1>
+            
+            <!-- Фильтры -->
+            <div class="filters-section">
+                <div class="filter-buttons">
+                    <button class="filter-btn" data-filter="chance">Шанс</button>
+                    <button class="filter-btn" data-filter="treasury">Казна</button>
+                </div>
+                
+                <!-- Поиск -->
+                <div class="search-section">
+                    <input type="text" id="searchInput" class="search-input" placeholder="Поиск">
+                </div>
+            </div>
+            
+            <!-- Список карточек -->
+            <div class="cards-list" id="cardsList"></div>
+        </div>
+    </main>
+
+    <!-- Фиксированная нижняя панель -->
+    <footer class="bottom-bar">
+        <div class="bottom-nav">
+            <a href="info.html" class="bottom-nav-item">
+                <img src="assets/info.png" alt="Инструкция" class="bottom-icon">
+            </a>
+            <a href="profile.html" class="bottom-nav-item">
+                <img src="assets/home.png" alt="Профиль" class="bottom-icon">
+            </a>
+            <a href="coin.html" class="bottom-nav-item">
+                <img src="assets/coin.png" alt="Драмакоины" class="bottom-icon">
+            </a>
+        </div>
+    </footer>
+
+    <script>
+        // Меню
+        const menuBtn = document.getElementById('menuButton');
+        const menuPanel = document.getElementById('menuPanel');
+        const menuOverlay = document.getElementById('menuOverlay');
+        const closeMenuBtn = document.getElementById('closeMenuBtn');
+        
+        function openMenu() {
+            menuPanel.style.left = '0';
+            menuOverlay.style.display = 'block';
+        }
+        
+        function closeMenu() {
+            menuPanel.style.left = '-280px';
+            menuOverlay.style.display = 'none';
+        }
+        
+        if (menuBtn) menuBtn.onclick = openMenu;
+        if (closeMenuBtn) closeMenuBtn.onclick = closeMenu;
+        if (menuOverlay) menuOverlay.onclick = closeMenu;
+        
+        // Кнопка назад
+        document.getElementById('backButton').onclick = () => {
+            window.location.href = 'profile.html';
+        };
+        
+        // Данные карточек (ваши все карточки остаются)
+        const cardsData = [
+            { id: 1, type: "chance", category: "common", name: "Шанс", text: "Сегодня тебе посчастливилось побывать на хоккейном матче – поздравляю, тебе подарили еще одну победную шайбу, возьми из банка 500$", drama: "+2" },
+            { id: 2, type: "chance", category: "common", name: "Шанс", text: "Вы успели сесть в вагоне на Петроградской в час пик – возьмите 300$", drama: "+1" },
+            { id: 3, type: "chance", category: "common", name: "Шанс", text: "В сухариках «3 корочки» попалась четвертая корочка – возьми 200$ из банка", drama: "+1" },
+            { id: 4, type: "chance", category: "common", name: "Шанс", text: "Сегодня в клубе выступает Янгвей, и ты получил проходку – возьми 500$ за сэкономленный входной билет", drama: "+2" },
+            { id: 5, type: "chance", category: "common", name: "Шанс", text: "Поездка к родителям – переместись на сектор «Дом родителей». Если твой – получи 3000$, если чужой – заплати аренду", drama: "+3" },
+            { id: 6, type: "chance", category: "common", name: "Шанс", text: "Захотела торт в 3 часа ночи – игрок справа пошел искать магазин. Брось кубик: 1–3 – да (получи 2000$, ход не пропускаешь), 4–6 – нет (пропусти ход)", drama: "+2 / -3" },
+            { id: 7, type: "chance", category: "common", name: "Шанс", text: "Тест-драйв BMW F90 – лети вперед на 5 клеток", drama: "+4" },
+            { id: 8, type: "chance", category: "common", name: "Шанс", text: "Черная пятница на WB – купи любой свободный сектор за полцены", drama: "+5" },
+            { id: 9, type: "chance", category: "common", name: "Шанс", text: "Админ в Roblox разбанил тебя – бесплатный выход из тюрьмы", drama: "+3" },
+            { id: 10, type: "chance", category: "common", name: "Шанс", text: "Карта дня – Колесо Фортуны: бросай кубик два раза и выбери лучший результат", drama: "+3" },
+            { id: 11, type: "chance", category: "common", name: "Шанс", text: "Заказчик прислал правки в 23:00 – ты сразу села их выполнять и в итоге не спала всю ночь, поэтому не идешь на пары (пропуск хода)", drama: "-5" },
+            { id: 12, type: "chance", category: "common", name: "Шанс", text: "Обмен с соседом – обменяйся улицей с игроком слева. Если не хочешь – плати 2000$", drama: "+3" },
+            { id: 13, type: "chance", category: "common", name: "Шанс", text: "Ты выиграла в розыгрыше билетов на Анну Асти в ТГ – получи 5000$ от банка", drama: "+5" },
+            { id: 14, type: "chance", category: "common", name: "Шанс", text: "Собаки спрятали ключи прямо перед выходом – пропуск хода", drama: "-4" },
+            { id: 15, type: "chance", category: "common", name: "Шанс", text: "Продажа старых ноутбуков на Авито состоялась – получи 3000$", drama: "+3" },
+            { id: 16, type: "chance", category: "common", name: "Шанс", text: "Сегодня отдыхаешь и пересматриваешь «Дневники вампира» – пропусти ход и получи 2000$", drama: "+2" },
+            { id: 17, type: "chance", category: "personal", name: "Шанс ⭐", text: "Сегодня на улице fucking cold,поэтому предлагаю зайти погреться в Tokyo-City,Тима угощает! Отправляйся на игровое поле «м. Парнас» (Тима)", drama: "+2" },
+            { id: 18, type: "chance", category: "personal", name: "Шанс ⭐", text: "Вы написали лучшую статью на курсах журналистики, возьмите из банка $2000 (Василиса)", drama: "+3" },
+            { id: 19, type: "chance", category: "personal", name: "Шанс ⭐", text: "Андрей починил тебе ноутбук. рассказываешь ему анектод или платишь 3000$ (если выпало Андрею, то он рассказывает его игроку слева) (Андрей)", drama: "+4" },
+            { id: 20, type: "chance", category: "personal", name: "Шанс ⭐", text: "Настя опять уснула в туалете. будишь ее и пропускаешь 1 ход (Настя)", drama: "-4" },
+            { id: 21, type: "chance", category: "personal", name: "Шанс ⭐", text: "Сегодня Новый год и пора закупать алкоголь, получи 1000$ с каждого чтобы праздник прошел на славу (Ваня)", drama: "+6" },
+            { id: 22, type: "chance", category: "personal", name: "Шанс ⭐", text: "Ты выиграл турнир по Mortal Kombat и стал главным боссом! Приз: $3000 из банка (Катя)", drama: "+5" },
+            { id: 23, type: "treasury", category: "common", name: "Казна", text: "Вышел новый закон, теперь штрафуют за внеземную красоту! Заплати банку $500", drama: "-3" },
+            { id: 24, type: "treasury", category: "common", name: "Казна", text: "Вы поехали на каток с друзьями, но забыли коньки. Пришлось брать в аренду. Твоя аренда: $100", drama: "-2" },
+            { id: 25, type: "treasury", category: "common", name: "Казна", text: "Сегодня Сильченко К.А. поймала вас в туалете за курением, заплатите $5000 или отправляйтесь в тюрьму", drama: "-6" },
+            { id: 26, type: "treasury", category: "common", name: "Казна", text: "В банке перепутали бумажки и начислили тебе денюжку, возьми 1000$", drama: "+4" },
+            { id: 27, type: "treasury", category: "common", name: "Казна", text: "Сломала ноготь перед важным мероприятием – заплати 2000$", drama: "-5" },
+            { id: 28, type: "treasury", category: "common", name: "Казна", text: "Алгоритмы TikTok радуют – пост залетел, получи 8000$", drama: "+8" },
+            { id: 29, type: "treasury", category: "common", name: "Казна", text: "Прислали премию за пост – получи 5000$", drama: "+5" },
+            { id: 30, type: "treasury", category: "common", name: "Казна", text: "Зарплата пришла, но заказчик докопался – получи 4000$, но пропусти ход", drama: "+2 / -3" },
+            { id: 31, type: "treasury", category: "common", name: "Казна", text: "Выпала карта Таро Туз Пентаклей – получи 3000$ у банка", drama: "+4" },
+            { id: 32, type: "treasury", category: "common", name: "Казна", text: "Судьба тебе благоволит – ты нашла код миллионера – получи 5000$", drama: "+6" },
+            { id: 33, type: "treasury", category: "common", name: "Казна", text: "Заказала платье с WB – игрок слева платит тебе 1000$", drama: "+3" },
+            { id: 34, type: "treasury", category: "common", name: "Казна", text: "Скоро годовщина родителей, а тебе нужно потратить 3000$ на подарок", drama: "-4" },
+            { id: 35, type: "treasury", category: "common", name: "Казна", text: "У тебя прорвало трубу – за каждый домик плати 1500$, за отель 4000$", drama: "-6" },
+            { id: 36, type: "treasury", category: "common", name: "Казна", text: "Меркурий в ретрограде, а ты хотела покрасить волосы в новый цвет – пропускаешь ход", drama: "-2" },
+            { id: 37, type: "treasury", category: "common", name: "Казна", text: "Проспала дедлайн – штраф 2000$", drama: "-4" },
+            { id: 38, type: "treasury", category: "common", name: "Казна", text: "Тебе было грустно, и ты решила заказать сладости в Лавке, чтобы поднять настроение – заплати 3000$", drama: "-3" },
+            { id: 39, type: "treasury", category: "personal", name: "Казна ⭐", text: "Cегодня Тима нарушил правила ПДД и вам пришлось заплатить штраф за превышение скорости, заплати штраф 500$ банку (Тима)", drama: "-2" },
+            { id: 40, type: "treasury", category: "personal", name: "Казна ⭐", text: "К сожалению, Василиса уволилась из ЛЛ и вам придется заплатить налог за все съеденные саверены, заплатите $2000 или отправляйся на старт (Василиса)", drama: "-4" },
+            { id: 41, type: "treasury", category: "personal", name: "Казна ⭐", text: "На перекрёстке вы перепутали лево с право и стукнулись бампером, заплати штраф 1000$ (Андрей)", drama: "-3" },
+            { id: 42, type: "treasury", category: "personal", name: "Казна ⭐", text: "Настя купила тебе шавуху за красивые глазки – получи 1000$ от банка (Настя)", drama: "+3" },
+            { id: 43, type: "treasury", category: "personal", name: "Казна ⭐", text: "Соседи вызвали полицию из-за слишком громкого караоке под вайперр в 3 часа ночи. Штраф за нарушение тишины: $800. (Катя)", drama: "-4" },
+            { id: 44, type: "treasury", category: "personal", name: "Казна ⭐", text: "Ване пришла зарплата, возьмите 3000$ у него. Если Вани нет – у игрока справа. (Ваня)", drama: "+5" }
+        ];
+
+        function renderCards(filterType = 'all', searchQuery = '') {
+            const cardsList = document.getElementById('cardsList');
+            let filteredCards = cardsData;
+            
+            if (filterType !== 'all') {
+                filteredCards = filteredCards.filter(card => card.type === filterType);
+            }
+            
+            if (searchQuery.trim() !== '') {
+                const query = searchQuery.toLowerCase();
+                filteredCards = filteredCards.filter(card => 
+                    card.text.toLowerCase().includes(query) ||
+                    card.drama.includes(query)
+                );
+            }
+            
+            cardsList.innerHTML = '';
+            
+            filteredCards.forEach(card => {
+                const cardElement = document.createElement('div');
+                cardElement.className = `card-item ${card.type === 'chance' ? 'chance-card' : 'treasury-card'}`;
+                cardElement.innerHTML = `
+                    <div class="card-header">
+                        <span class="card-name">${card.name}</span>
+                        <span class="card-drama" style="color: #E75480">${card.drama}</span>
+                    </div>
+                    <div class="card-text">${card.text}</div>
+                `;
+                cardsList.appendChild(cardElement);
+            });
+            
+            if (filteredCards.length === 0) {
+                cardsList.innerHTML = '<div class="no-results">Карточки не найдены</div>';
+            }
+        }
+
+        let currentFilter = 'all';
+        let currentSearch = '';
+        
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentFilter = btn.dataset.filter;
+                renderCards(currentFilter, currentSearch);
+            });
+        });
+        
+        const searchInput = document.getElementById('searchInput');
+        if (searchInput) {
+            searchInput.addEventListener('input', (e) => {
+                currentSearch = e.target.value;
+                renderCards(currentFilter, currentSearch);
+            });
+        }
+        
+        renderCards('all', '');
+    </script>
+</body>
+</html>

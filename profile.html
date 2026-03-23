@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>AlinaMonopoly | Главная</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="users.js"></script>
+</head>
+<body >
+    <header class="top-bar">
+        <div class="edit-button" id="menuButton">
+            <img src="assets/menu.png" alt="Меню" class="edit-icon">
+        </div>
+        <div class="logo-placeholder"></div>
+        <span class="logo-text">AlinaMonopoly</span>
+        <div class="edit-button" id="coinButton">
+            <img src="assets/coin.png" alt="Драмакоины" class="edit-icon">
+        </div>
+    </header>
+
+    <!-- Меню -->
+    <div id="menuOverlay" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); z-index:999;"></div>
+    <div id="menuPanel" style="position:fixed; top:0; left:-280px; width:280px; height:100%; background:#FFBDD9; z-index:1000; transition:left 0.3s; box-shadow:2px 0 10px rgba(0,0,0,0.1);">
+        <div style="display:flex; justify-content:space-between; align-items:center; padding:20px; border-bottom:1px solid rgba(231,84,128,0.3);">
+            <span style="font-size:20px; font-weight:700; color:#E75480;">Меню</span>
+            <button id="closeMenuBtn" style="background:none; border:none; font-size:28px; color:#E75480; cursor:pointer;">✕</button>
+        </div>
+        <a href="profile.html" style="display:flex; align-items:center; gap:15px; padding:15px 20px; text-decoration:none; border-bottom:1px solid rgba(231,84,128,0.2); background:rgba(231,84,128,0.3);">
+            <img src="assets/home.png" style="width:24px; height:24px;">
+            <span style="font-size:16px; color:#E75480;">Главная</span>
+        </a>
+        <a href="info.html" style="display:flex; align-items:center; gap:15px; padding:15px 20px; text-decoration:none; border-bottom:1px solid rgba(231,84,128,0.2);">
+            <img src="assets/info.png" style="width:24px; height:24px;">
+            <span style="font-size:16px; color:#E75480;">Инструкция</span>
+        </a>
+        <a href="coin.html" style="display:flex; align-items:center; gap:15px; padding:15px 20px; text-decoration:none; border-bottom:1px solid rgba(231,84,128,0.2);">
+            <img src="assets/coin.png" style="width:24px; height:24px;">
+            <span style="font-size:16px; color:#E75480;">Драмакоины</span>
+        </a>
+        <a href="cards.html" style="display:flex; align-items:center; gap:15px; padding:15px 20px; text-decoration:none; border-bottom:1px solid rgba(231,84,128,0.2);">
+            <img src="assets/cards.png" style="width:24px; height:24px;">
+            <span style="font-size:16px; color:#E75480;">Карточки</span>
+        </a>
+        <a href="main.html" id="logoutBtn" style="display:flex; align-items:center; gap:15px; padding:15px 20px; text-decoration:none; border-bottom:1px solid rgba(231,84,128,0.2);">
+                <img src="assets/logout.png" style="width:24px; height:24px;" onerror="this.src='assets/home.png'">
+                <span style="font-size:16px; color:#E75480;">Выйти</span>
+            </a>
+    </div>
+
+    <main class="main-content">
+        <div class="profile-section">
+            <div class="avatar-wrapper">
+                <img src="" alt="Аватар" class="avatar" id="userAvatar">
+            </div>
+            <div class="greeting">
+                <h2 class="greeting-text">Привет, <span id="userName"></span>!</h2>
+                <div class="stats">
+                    <div class="stat-item">
+                        <span class="stat-label">Уровень:</span>
+                        <span class="stat-value" id="levelValue"></span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Бонус:</span>
+                        <span class="stat-value" id="bonusValue"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="drama-progress">
+            <div class="progress-header">
+                <span class="progress-title">Процесс драмы</span>
+                <a href="#" class="progress-icon-link" id="dramaIconLink">
+                    <img src="assets/change.png" alt="Драма" class="progress-icon">
+                </a>
+            </div>
+            <div class="progress-bar-container">
+                <div class="progress-bar-fill" id="progressFill"></div>
+            </div>
+            <div class="progress-numbers">
+                <span id="currentDrama"></span>
+                <span>/</span>
+                <span id="maxDrama"></span>
+            </div>
+        </div>
+
+        <div class="nav-buttons">
+            <a href="info.html" class="nav-btn">
+                <img src="assets/info.png" alt="Инструкция" class="nav-icon">
+                <span>ИНСТРУКЦИЯ</span>
+            </a>
+            <a href="coin.html" class="nav-btn">
+                <img src="assets/coin.png" alt="Драма коины" class="nav-icon">
+                <span>ДРАМА КОИНЫ</span>
+            </a>
+            <a href="cards.html" class="nav-btn">
+                <img src="assets/cards.png" alt="Карточки" class="nav-icon">
+                <span>КАРТОЧКИ</span>
+            </a>
+        </div>
+    </main>
+
+    <footer class="bottom-bar">
+        <div class="bottom-nav">
+            <a href="info.html" class="bottom-nav-item">
+                <img src="assets/info.png" alt="Инструкция" class="bottom-icon">
+            </a>
+            <a href="coin.html" class="bottom-nav-item">
+                <img src="assets/coin.png" alt="Драмакоины" class="bottom-icon">
+            </a>
+            <a href="cards.html" class="bottom-nav-item">
+                <img src="assets/cards.png" alt="Карточки" class="bottom-icon">
+            </a>
+        </div>
+    </footer>
+
+    <script>
+        // Проверка авторизации
+        const currentUser = localStorage.getItem('currentUser');
+        
+        if (!currentUser) {
+            window.location.href = 'main.html';
+        }
+        
+        const user = JSON.parse(currentUser);
+        
+        // Загружаем данные драмакоинов из localStorage
+        let usersScores = {};
+        const savedScores = localStorage.getItem('dramacoinsScores');
+        if (savedScores) {
+            usersScores = JSON.parse(savedScores);
+        } else {
+            // Инициализация из users.js
+            users.forEach(u => {
+                usersScores[u.name] = u.dramaProgress;
+            });
+            localStorage.setItem('dramacoinsScores', JSON.stringify(usersScores));
+        }
+        
+        // Получаем текущий счет пользователя
+        const userScore = usersScores[user.name] || 50;
+        
+        // Определяем уровень и бонус на основе драмакоинов
+        function getLevelAndBonus(score) {
+            if (score <= 0) return { level: "БАН", bonus: "Сразу в тюрьму" };
+            if (score <= 20) return { level: "ТУЛЬТ", bonus: "Низкая ставка" };
+            if (score <= 50) return { level: "НОРМ", bonus: "нет бонуса" };
+            if (score <= 70) return { level: "ХОРОШО", bonus: "переброс кубика" };
+            if (score <= 80) return { level: "КАЙФ", bonus: "не платить аренду" };
+            return { level: "ПРАЙМ", bonus: "дешевле ход" };
+        }
+        
+        const levelBonus = getLevelAndBonus(userScore);
+        
+        // Заполняем данные пользователя
+        document.getElementById('userName').textContent = user.name;
+        document.getElementById('userAvatar').src = user.avatar || 'assets/profile.png';
+        document.getElementById('levelValue').textContent = levelBonus.level;
+        document.getElementById('bonusValue').textContent = levelBonus.bonus;
+        document.getElementById('currentDrama').textContent = userScore;
+        document.getElementById('maxDrama').textContent = 100;
+        
+        const progressFill = document.getElementById('progressFill');
+        const percentage = (userScore / 100) * 100;
+        progressFill.style.width = `${percentage}%`;
+        
+        // Меню
+        const menuBtn = document.getElementById('menuButton');
+        const menuPanel = document.getElementById('menuPanel');
+        const menuOverlay = document.getElementById('menuOverlay');
+        const closeMenuBtn = document.getElementById('closeMenuBtn');
+        
+        function openMenu() {
+            menuPanel.style.left = '0';
+            menuOverlay.style.display = 'block';
+        }
+        
+        function closeMenu() {
+            menuPanel.style.left = '-280px';
+            menuOverlay.style.display = 'none';
+        }
+        
+        menuBtn.onclick = openMenu;
+        closeMenuBtn.onclick = closeMenu;
+        menuOverlay.onclick = closeMenu;
+        
+        document.getElementById('coinButton').onclick = () => {
+            window.location.href = 'coin.html';
+        };
+        
+        document.getElementById('dramaIconLink').onclick = (e) => {
+            e.preventDefault();
+            window.location.href = 'coin.html';
+        };
+    </script>
+</body>
+</html>

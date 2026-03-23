@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <title>AlinaMonopoly | Инструкция</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="instruction-page">
+    <!-- Фиксированная верхняя панель -->
+    <header class="top-bar">
+        <div class="edit-button" id="backButton">
+            <img src="assets/back.png" alt="Назад" class="edit-icon">
+        </div>
+        <div class="logo-placeholder"></div>
+        <span class="logo-text">AlinaMonopoly</span>
+        <div class="edit-button" id="menuButton">
+            <img src="assets/menu.png" alt="Меню" class="edit-icon">
+        </div>
+    </header>
+
+    <!-- Выпадающее меню -->
+    <div id="menuOverlay" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); z-index:999;"></div>
+    <div id="menuPanel" style="position:fixed; top:0; left:-280px; width:280px; height:100%; background:#FFBDD9; z-index:1000; transition:left 0.3s; box-shadow:2px 0 10px rgba(0,0,0,0.1);">
+        <div style="display:flex; justify-content:space-between; align-items:center; padding:20px; border-bottom:1px solid rgba(231,84,128,0.3);">
+            <span style="font-size:20px; font-weight:700; color:#E75480;">Меню</span>
+            <button id="closeMenuBtn" style="background:none; border:none; font-size:28px; color:#E75480; cursor:pointer;">✕</button>
+        </div>
+        <a href="profile.html" style="display:flex; align-items:center; gap:15px; padding:15px 20px; text-decoration:none; border-bottom:1px solid rgba(231,84,128,0.2);">
+            <img src="assets/home.png" style="width:24px; height:24px;">
+            <span style="font-size:16px; color:#E75480;">Главная</span>
+        </a>
+        <a href="info.html" style="display:flex; align-items:center; gap:15px; padding:15px 20px; text-decoration:none; border-bottom:1px solid rgba(231,84,128,0.2); background:rgba(231,84,128,0.3);">
+            <img src="assets/info.png" style="width:24px; height:24px;">
+            <span style="font-size:16px; color:#E75480;">Инструкция</span>
+        </a>
+        <a href="coin.html" style="display:flex; align-items:center; gap:15px; padding:15px 20px; text-decoration:none; border-bottom:1px solid rgba(231,84,128,0.2);">
+            <img src="assets/coin.png" style="width:24px; height:24px;">
+            <span style="font-size:16px; color:#E75480;">Драмакоины</span>
+        </a>
+        <a href="cards.html" style="display:flex; align-items:center; gap:15px; padding:15px 20px; text-decoration:none; border-bottom:1px solid rgba(231,84,128,0.2);">
+            <img src="assets/cards.png" style="width:24px; height:24px;">
+            <span style="font-size:16px; color:#E75480;">Карточки</span>
+        </a>
+        <a href="main.html" id="logoutBtn" style="display:flex; align-items:center; gap:15px; padding:15px 20px; text-decoration:none; border-bottom:1px solid rgba(231,84,128,0.2);">
+                <img src="assets/logout.png" style="width:24px; height:24px;" onerror="this.src='assets/home.png'">
+                <span style="font-size:16px; color:#E75480;">Выйти</span>
+            </a>
+    </div>
+
+    <!-- Основной контент -->
+    <main class="main-content instruction-content">
+        <div class="instruction-container">
+            <!-- Заголовок -->
+            <h1 class="instruction-main-title">Инструкция</h1>
+            
+            <!-- Компоненты игры (ссылки) -->
+            <section class="instruction-section">
+                <h2 class="section-title">Компоненты игры</h2>
+                <ul class="instruction-list components-list">
+                    <li><a href="#goal">Цель игры</a></li>
+                    <li><a href="#preparation">Подготовка к игре</a></li>
+                    <li><a href="#gameplay">Ход игры</a></li>
+                    <li><a href="#cells">Клетки игрового поля</a>
+                        <ul class="sublist">
+                            <li><a href="#transport">Транспорт</a></li>
+                            <li><a href="#companies">Компании</a></li>
+                            <li><a href="#jail">Тюрьма</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#auction">Аукцион</a></li>
+                    <li><a href="#bankruptcy">Что делать если нечем платить</a></li>
+                    <li><a href="#dramacoins">Драмакоины</a></li>
+                    <li><a href="#endgame">Конец игры</a></li>
+                    <li><a href="#special">Особые правила</a></li>
+                </ul>
+            </section>
+
+            <!-- КОМПОНЕНТЫ ИГРЫ (предметы) -->
+            <section class="instruction-section">
+                <h2 class="section-title">КОМПОНЕНТЫ ИГРЫ</h2>
+                <ul class="instruction-list">
+                    <li>Игровое поле (40 клеток)</li>
+                    <li>9 фишек игроков</li>
+                    <li>2 кубика</li>
+                    <li>Деньги (кубики номиналом 50, 100, 200, 500, 1000, 2000, 5000)</li>
+                    <li>Карточки Шанс (24 штуки)</li>
+                    <li>Карточки Казуа (24 штуки)</li>
+                    <li>Документы на собственность (21 улица, 4 транспорта, 3 компании)</li>
+                    <li>Домики (розовые) и отели (красные)</li>
+                </ul>
+            </section>
+
+            <!-- ЦЕЛЬ ИГРЫ -->
+            <section id="goal" class="instruction-section">
+                <h2 class="section-title">ЦЕЛЬ ИГРЫ</h2>
+                <p class="section-text">Остаться последним игроком, у которого есть деньги и собственность. Побеждает тот, кто доведёт всех до банкротства и станет Карповской драми.</p>
+            </section>
+
+            <!-- ПОДГОТОВКА К ИГРЕ -->
+            <section id="preparation" class="instruction-section">
+                <h2 class="section-title">ПОДГОТОВКА К ИГРЕ</h2>
+                <ol class="instruction-list numbered">
+                    <li><strong>Выберите банкира.</strong> Банкир отвечает за деньги, аукционы и соблюдение правил. Он тоже играет.</li>
+                    <li><strong>Разложите поле.</strong> Карточки Шанс и Казуа кладутся на соответствующие клетки.</li>
+                    <li><strong>Каждый игрок выбирает фишку и ставит её на клетку ГАЗ (Старт).</strong></li>
+                    <li><strong>Раздайте стартовый капитал.</strong> Каждый игрок получает 11 500 $:
+                        <div>
+                            <p>1 – 5000</p>
+                            <p>2 – 2000</p>
+                            <p>3 – 1000</p>
+                            <p>4 – 500</p>
+                        </div>
+                    </li>
+                    <li><strong>Откройте сайт.</strong> Там уже есть ваши аккаунты и счётчик драмакоинов.</li>
+                    <li><strong>Определите порядок хода.</strong> Все бросают кубик. Кто выбросил больше — ходит первым. Дальше — по часовой стрелке.</li>
+                </ol>
+            </section>
+
+            <!-- ХОД ИГРЫ -->
+            <section id="gameplay" class="instruction-section">
+                <h2 class="section-title">ХОД ИГРЫ</h2>
+                <ol class="instruction-list numbered">
+                    <li><strong>Брось два кубика</strong> и передвинь фишку на выпавшее количество клеток по часовой стрелке.</li>
+                    <li>В зависимости от клетки:
+                        <div>
+                            <p><strong>Улица свободна:</strong> можешь купить (по цене на клетке) или отказаться (тогда улица уходит на аукцион).</p>
+                            <p><strong>Улица куплена:</strong> заплати аренду владельцу.</p>
+                            <p><strong>Транспорт или компания:</strong> купи или заплати аренду.</p>
+                            <p><strong>Шанс / Казна:</strong> вытяни карту и выполни действие.</p>
+                            <p><strong>Налог:</strong> заплати банку.</p>
+                            <p><strong>Бан в Roblox:</strong> следуй правилам тюрьмы.</p>
+                            <p><strong>Откинуть дома (Бесплатная парковка):</strong> ничего не происходит.</p>
+                            <p><strong>Тебя забанили в Roblox (отправляйся в тюрьму):</strong> переходи на клетку тюрьмы.</p>
+                            <p><strong>Бан в Roblox (тюрьма):</strong> см. раздел.</p>
+                        </div>
+                    </li>
+                    <li>Если выпал дубль — ходишь ещё раз. Если дубль выпал три раза подряд — сразу отправляйся в тюрьму.</li>
+                    <li>После окончания хода передай ход следующему игроку <strong>(по часовой стрелке)</strong>.</li>
+                </ol>
+            </section>
+
+            <!-- КЛЕТКИ ИГРОВОГО ПОЛЯ -->
+            <section id="cells" class="instruction-section">
+                <h2 class="section-title">КЛЕТКИ ИГРОВОГО ПОЛЯ</h2>
+                
+                <h3 id="transport" class="subsection-title">Транспорт</h3>
+                <p class="section-text">Занято: если вы остановились на занятом транспорте, уплатите ему ренту. Размер ренты зависит от того сколько Транспорта уже есть у владельца (см. таблицу).</p>
+                <div class="table-wrapper">
+                    <table class="price-table">
+                        32;<th>1</th><th>2</th><th>3</th><th>4</th> </tr>
+                        32;<td>500</td><td>1000</td><td>2000</td><td>4000</td> </tr>
+                    </table>
+                </div>
+
+                <h3 id="companies" class="subsection-title">Компании</h3>
+                <p class="section-text">Занято: если вы остановились на занятом транспорте, уплатите ему ренту. Нужно снова бросить игральные кубики, чтобы оплатить размер ренты. В зависимости от количества компаний считается ее сумма (см. таблицу ниже).</p>
+                <div class="table-wrapper">
+                    <table class="price-table">
+                        32;<th>1</th><th>2</th><th>3</th> </tr>
+                        32;<td>= x4</td><td>= x10</td><td>= x15</td> </tr>
+                    </table>
+                </div>
+            </section>
+
+            <!-- ТЮРЬМА -->
+            <section id="jail" class="instruction-section">
+                <h2 class="section-title">Тюрьма</h2>
+                <h3 class="subsection-title">Попасть в тюрьму можно:</h3>
+                <ul class="instruction-list">
+                    <li>если попал на клетку «Тебя забанили в Roblox»</li>
+                    <li>если выкинул три дубля подряд</li>
+                    <li>если вытянул карту с таким предписанием</li>
+                </ul>
+                
+                <h3 class="subsection-title">Как выйти из тюрьмы:</h3>
+                <ul class="instruction-list">
+                    <li><strong>Купить выход:</strong> заплати 2000$ банку (в свой ход перед броском кубиков)</li>
+                    <li><strong>Выкинуть дубль:</strong> в свой ход брось кубики, если выпал дубль — выходишь бесплатно и ходишь на выпавшее количество клеток</li>
+                    <li><strong>Использовать карту:</strong> Админ разблокировал в Roblox (бесплатный выход)</li>
+                </ul>
+                
+                <h3 class="subsection-title">Пока ты в тюрьме:</h3>
+                <ul class="instruction-list">
+                    <li>не ходишь (кроме выхода по дублю)</li>
+                    <li>можешь участвовать в аукционах</li>
+                    <li>можешь строить дома и отели</li>
+                    <li>можешь получать и платить аренду (если кто-то попал на твою улицу)</li>
+                </ul>
+            </section>
+
+            <!-- ЗДАНИЯ -->
+            <section class="instruction-section">
+                <h2 class="section-title">ЗДАНИЯ</h2>
+                
+                <h3 class="subsection-title">Домики</h3>
+                <ul class="instruction-list">
+                    <li>Как только вы собрали цветовой комплект, начинайте покупать Дома (ждать своего хода необходимо!)</li>
+                    <li>Уплатите Банку цену, указанную на карточке Собственности, и поставьте Дом на Улице.</li>
+                    <li>Нельзя поставить второй дом, пока на всех Улицах цветового комплекта не будет стоять по одному Дому. Максимум 3 дома на улице.</li>
+                </ul>
+                
+                <h3 class="subsection-title">Отели</h3>
+                <ul class="instruction-list">
+                    <li>Если на всех Улицах цветового комплекта стоит по 3 Дома, вы можете построить Отель.</li>
+                    <li>Уплатите цену Отеля, указанную на карточке Собственности, верните в Банк 3 Дома с выбранной Улицы и поставьте вместо них Отель.</li>
+                    <li>На одной Улице может находиться только 1 отель. Добавлять Дома на эту Улицу уже нельзя.</li>
+                </ul>
+                <p class="section-text">Если любая Улица цветового комплекта находится в залоге, то ставить здания на этих Улицах данного цвета уже нельзя.</p>
+            </section>
+
+            <!-- АУКЦИОН -->
+            <section id="auction" class="instruction-section">
+                <h2 class="section-title">АУКЦИОН</h2>
+                <p class="section-text">Если игрок откажется покупать недвижимость (или не хватило денег), банкир сразу же объявляет аукцион.</p>
+                <ol class="instruction-list numbered">
+                    <li>Банкир объявляет аукцион, стартовая цена – 10$.</li>
+                    <li>Любой игрок (включая отказавшегося) может повысить цену на 15$.</li>
+                    <li>Аукцион <strong>выигрывает тот</strong>, кто предложил самую высокую ставку.</li>
+                    <li>Победитель платит банку свою ставку и получает объект.</li>
+                </ol>
+            </section>
+
+            <!-- НЕ МОЖЕШЬ РАСПЛАТИТЬСЯ? -->
+            <section id="bankruptcy" class="instruction-section">
+                <h2 class="section-title">НЕ МОЖЕШЬ РАСПЛАТИТЬСЯ?</h2>
+                
+                <div class="bankruptcy-options">
+                    <div class="bankruptcy-card">
+                        <h3 class="subsection-title">1 вариант. Залог и продажа</h3>
+                        <ol class="instruction-list numbered">
+                            <li>Продай отели банку за полцены</li>
+                            <li>Продай дома банку за полцены</li>
+                            <li>Заложи улицы банку (получишь половину стоимости, выкупить можно за ту же сумму + 10%)</li>
+                            <li>Если всё равно не хватает, продавай транспорт и компании</li>
+                            <li>Если денег всё ещё нет, объяви банкротство</li>
+                        </ol>
+                    </div>
+                    
+                    <div class="bankruptcy-card">
+                        <h3 class="subsection-title">2 вариант. Сделка с игроком</h3>
+                        <ul class="instruction-list">
+                            <li>Отдай ему улицы в счёт долга</li>
+                            <li>Пообещай часть будущих доходов</li>
+                            <li>Продай ему что-то по договорной цене</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bankruptcy-card">
+                        <h3 class="subsection-title">3 вариант. Банкротство</h3>
+                        <ul class="instruction-list">
+                            <li>Все деньги, карточка "Выход из тюрьмы" и имущество переходят к кредитору (игроку, которому ты должен). Новый владелец должен сразу погасить залог (уплатить банку).</li>
+                            <li>Если должен банку – всё возвращается в банк, а недвижимость выставляется на аукцион.</li>
+                            <li>Ты выбываешь из игры.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ДРАМАКОИНЫ -->
+            <section id="dramacoins" class="instruction-section">
+                <h2 class="section-title">ДРАМАКОИНЫ</h2>
+                <p class="section-text">Драмакоины — это особая шкала настроения. Чем выше число — тем круче твои бонусы.</p>
+                
+                <h3 class="subsection-title">Как получить:</h3>
+                <div class="table-wrapper">
+                    <table class="drama-table">
+                        32;<th>Действие</th><th>Счёт</th> </tr>
+                        32;<td>Проход через клетку ГАЗ</td><td>+5</td> </tr>
+                        32;<td>Купил улицу</td><td>+2</td> </tr>
+                        32;<td>Построил дом</td><td>+3</td> </tr>
+                        32;<td>Построил отель</td><td>+5</td> </tr>
+                        32;<td>Засмеялся вместе с Алиной</td><td>+1</td> </tr>
+                        32;<td>У тебя ДР</td><td>+20</td> </tr>
+                    </table>
+                </div>
+                
+                <h3 class="subsection-title">Как потерять:</h3>
+                <div class="table-wrapper">
+                    <table class="drama-table">
+                        32;<th>Действие</th><th>Счёт</th> </tr>
+                        32;<td>Бан в Roblox</td><td>-10</td> </tr>
+                        32;<td>Вышел из тюрьмы до геноцида</td><td>-5</td> </tr>
+                        32;<td>Забыл аренду</td><td>-2 (каждый раз)</td> </tr>
+                        32;<td>Алина захватывала на тень</td><td>-1 (для Алины)</td> </tr>
+                    </table>
+                </div>
+                
+                <h3 class="subsection-title">Уровни драмакоинов</h3>
+                <div class="table-wrapper">
+                    <table class="levels-table">
+                        32;<th>Ур.</th><th>Счёт</th><th>Эффект</th> </tr>
+                        32;<td>Бан</td><td>0 и ниже</td><td>Сразу в тюрьму</td> </tr>
+                        32;<td>Тульт</td><td>1–20</td><td>Низкая ставка дома и покупать недвижимость</td> </tr>
+                        32;<td>Норм</td><td>21–50</td><td>Все как обычно</td> </tr>
+                        32;<td>Хорошо</td><td>51–70</td><td>1 раз можно перебросить кубик</td> </tr>
+                        32;<td>Кайф</td><td>71–80</td><td>1 раз можно не платить аренду</td> </tr>
+                        32;<td>Прайм</td><td>81–100</td><td>Дешевле 2 ходу подряд</td> </tr>
+                    </table>
+                </div>
+                <p class="section-text"><strong>Важно:</strong> Драмакоины не сбрасываются после круга. Они копятся всю игру. Также эффекты не суммируются.</p>
+            </section>
+
+            <!-- КОНЕЦ ИГРЫ -->
+            <section id="endgame" class="instruction-section">
+                <h2 class="section-title">КОНЕЦ ИГРЫ</h2>
+                <p class="section-text">Игра заканчивается, когда все, кроме одного игрока, обанкротились.</p>
+                <p class="section-text">Победитель получает звание:<br><strong>«Королева драмы и повелительница стая»</strong></p>
+                <p class="section-text">Если игра затянулась, можно объявить победителя по максимальному количеству драмакоинов.</p>
+            </section>
+            
+            <!-- ОСОБЫЕ ПРАВИЛА -->
+            <section id="special" class="instruction-section">
+                <h2 class="section-title">ОСОБЫЕ ПРАВИЛА</h2>
+                <p class="section-text">Особые правила будут дополняться по мере необходимости.</p>
+            </section>
+        </div>
+    </main>
+
+    <!-- Фиксированная нижняя панель -->
+    <footer class="bottom-bar">
+        <div class="bottom-nav">
+            <a href="cards.html" class="bottom-nav-item">
+                <img src="assets/cards.png" alt="Карточки" class="bottom-icon">
+            </a>
+            <a href="profile.html" class="bottom-nav-item">
+                <img src="assets/home.png" alt="Профиль" class="bottom-icon">
+            </a>
+            <a href="coin.html" class="bottom-nav-item">
+                <img src="assets/coin.png" alt="Драмакоины" class="bottom-icon">
+            </a>
+        </div>
+    </footer>
+
+    <script>
+        // Меню
+        const menuBtn = document.getElementById('menuButton');
+        const menuPanel = document.getElementById('menuPanel');
+        const menuOverlay = document.getElementById('menuOverlay');
+        const closeMenuBtn = document.getElementById('closeMenuBtn');
+        
+        function openMenu() {
+            menuPanel.style.left = '0';
+            menuOverlay.style.display = 'block';
+        }
+        
+        function closeMenu() {
+            menuPanel.style.left = '-280px';
+            menuOverlay.style.display = 'none';
+        }
+        
+        if (menuBtn) menuBtn.onclick = openMenu;
+        if (closeMenuBtn) closeMenuBtn.onclick = closeMenu;
+        if (menuOverlay) menuOverlay.onclick = closeMenu;
+        
+        // Кнопка назад
+        document.getElementById('backButton').onclick = () => {
+            window.location.href = 'profile.html';
+        };
+    </script>
+</body>
+</html>
